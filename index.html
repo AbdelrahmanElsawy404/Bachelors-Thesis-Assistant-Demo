@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Thesis Assistant</title>
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="static/pages-demo.js" defer></script>
+    <script src="static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="appbar">
+      <button class="brand" data-new-session>Thesis Assistant</button>
+      <span class="demo-notice" title="Research workflow"
+        >Research</span
+      >
+      <div class="header-actions">
+        <button class="header-button" id="open-sessions">Sessions</button>
+        <button class="header-button" data-new-session>New demo</button>
+        <button class="header-button" id="open-document" hidden>
+          Document
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section
+        id="setup-screen"
+        class="setup-screen"
+        aria-labelledby="setup-heading"
+      >
+        <h1 id="setup-heading">Try the research workflow</h1>
+        <form id="research-form">
+          <label for="run-mode">Mode</label>
+          <select id="run-mode">
+            
+            <option value="demo">Demo · no API keys</option>
+          </select>
+          <div class="setup-grid">
+            <section class="brief-fields" aria-label="Research details">
+              <label for="research-title">Title</label>
+              <input
+                id="research-title"
+                name="title"
+                required
+                maxlength="180"
+                value="AI-assisted software testing"
+              />
+              <label for="research-description">Description</label>
+              <textarea
+                id="research-description"
+                name="description"
+                required
+                maxlength="2000"
+                rows="6"
+                placeholder="What would you like to explore?"
+              >Explore the benefits and limitations of AI in software testing.</textarea>
+            </section>
+            <section hidden class="files-panel" aria-labelledby="files-heading">
+              <h2 id="files-heading">Files</h2>
+              <div id="drop-zone" class="drop-zone">
+                <span class="file-icon" aria-hidden="true">↥</span>
+                <p>Drop PDF files here</p>
+                <button
+                  class="secondary-button"
+                  id="choose-files"
+                  type="button"
+                >
+                  Choose files
+                </button>
+                <span class="file-hint">Up to 10 PDFs · 20 MB each</span>
+              </div>
+              <input
+                id="file-input"
+                type="file"
+                accept=".pdf,application/pdf"
+                multiple
+                hidden
+                aria-label="PDF files"
+              />
+              <ul
+                id="file-list"
+                class="file-list"
+                aria-label="Selected files"
+              ></ul>
+            </section>
+          </div>
+          <div class="setup-actions">
+            <p class="setup-note">
+              Research uses your PDFs and configured model APIs.
+            </p>
+            <button class="primary-button" id="start-demo" type="submit">
+              Start demo →
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section
+        id="run-screen"
+        class="run-screen"
+        hidden
+        aria-label="Research workspace"
+      >
+        <header class="run-heading">
+          <h1 id="project-name">Research</h1>
+          <span class="run-status" id="run-status" role="status">Ready</span>
+        </header>
+        <section class="conversation" aria-label="Research activity">
+          <div class="chat-scroll" id="chat-scroll">
+            <div class="messages">
+              <p id="activity-placeholder" class="activity-placeholder">
+                Research activity will appear here.
+              </p>
+              <article class="user-message" id="revision-message" hidden>
+                <p id="revision-text"></p>
+              </article>
+              <article class="agent" data-agent="planner" hidden>
+                <div class="agent-heading">
+                  <b>Planner</b> <span class="agent-status"></span>
+                </div>
+                <p class="agent-text"></p>
+              </article>
+              <article class="agent" data-agent="critic" hidden>
+                <div class="agent-heading">
+                  <b>Critic</b> <span class="agent-status"></span>
+                </div>
+                <p class="agent-text"></p>
+              </article>
+              <article class="agent" data-agent="worker" hidden>
+                <div class="agent-heading">
+                  <b>Worker</b> <span class="agent-status"></span>
+                </div>
+                <p class="agent-text"></p>
+              </article>
+              <p id="workflow-progress" role="status" hidden></p>
+              <details id="model-previews" hidden>
+                <summary>Live model text · provisional</summary>
+                <div id="model-output"></div>
+              </details>
+              <section
+                id="review-summary"
+                class="review-summary"
+                hidden
+                aria-label="Your decision"
+              >
+                <p id="review-state"></p>
+                <p id="review-warning" hidden></p>
+                <details id="review-details" hidden>
+                  <summary>Review findings</summary>
+                  <pre id="review-content"></pre>
+                </details>
+                <div class="decision-actions" id="decision-actions" hidden>
+                  <button
+                    class="primary-button"
+                    type="submit"
+                    value="approve"
+                    form="review-form"
+                    id="approve-decision"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    class="secondary-button"
+                    type="submit"
+                    value="end"
+                    form="review-form"
+                  >
+                    End session
+                  </button>
+                </div>
+                <button class="secondary-button" id="resume-session" hidden>
+                  Resume
+                </button>
+              </section>
+            </div>
+          </div>
+          <form id="review-form" class="composer">
+            <label class="sr-only" for="feedback">Your input</label>
+            <textarea
+              id="feedback"
+              rows="2"
+              maxlength="2000"
+              disabled
+              placeholder="Wait for a review to send feedback…"
+            ></textarea>
+            <button
+              class="send-button"
+              id="send-feedback"
+              type="submit"
+              value="revise"
+              aria-label="Send feedback"
+              disabled
+            >
+              ↑
+            </button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="sessions-dialog" aria-labelledby="sessions-heading">
+      <header class="dialog-heading">
+        <h2 id="sessions-heading">Sessions</h2>
+        <button
+          class="close-button"
+          id="close-sessions"
+          aria-label="Close sessions"
+        >
+          ×
+        </button>
+      </header>
+      <label class="sr-only" for="saved-sessions">Open a saved session</label>
+      <select id="saved-sessions" hidden aria-label="Open a saved session">
+        <option value="">Open a session…</option>
+      </select>
+      <div id="session-list" class="session-list"></div>
+      <p class="sidebar-empty" id="sidebar-empty">No sessions yet.</p>
+    </dialog>
+    <dialog id="document-dialog" aria-label="Working document">
+      <header class="document-toolbar">
+        <div class="document-tabs" role="group" aria-label="Document view">
+          <button data-view="plan" class="active">Plan</button>
+          <button data-view="draft">Draft</button>
+          <button data-view="sources">Files</button>
+        </div>
+        <button class="secondary-button" id="download-report" hidden>
+          Download report
+        </button>
+        <button
+          class="close-button"
+          id="close-document"
+          aria-label="Close document"
+        >
+          ×
+        </button>
+      </header>
+      <article class="document">
+        <h2 id="document-heading">Plan</h2>
+        <div id="document-text" class="document-text">No plan yet.</div>
+      </article>
+    </dialog>
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+  </body>
+</html>
