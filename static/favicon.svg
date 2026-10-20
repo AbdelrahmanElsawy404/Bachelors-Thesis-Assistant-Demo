@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>Thesis Assistant</title>
-  <rect width="64" height="64" rx="16" fill="#79533e"/>
+  <rect width="64" height="64" rx="16" fill="#23241f"/>
   <path d="M13 20c7-2 13-1 19 3 6-4 12-5 19-3v27c-7-2-13-1-19 3-6-4-12-5-19-3Z"
-        fill="#faf6ed"/>
-  <path d="M32 24v24" fill="none" stroke="#79533e" stroke-width="3"/>
+        fill="#f6f5ee"/>
+  <path d="M32 24v24" fill="none" stroke="#23241f" stroke-width="3"/>
   <path d="m45 7 2.5 6.5L54 16l-6.5 2.5L45 25l-2.5-6.5L36 16l6.5-2.5Z"
-        fill="#e8bd79" stroke="#79533e" stroke-width="2" stroke-linejoin="round"/>
+        fill="#f5d84c" stroke="#23241f" stroke-width="2" stroke-linejoin="round"/>
 </svg>

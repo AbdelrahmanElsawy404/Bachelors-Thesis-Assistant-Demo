@@ -31,7 +31,7 @@
         class="setup-screen"
         aria-labelledby="setup-heading"
       >
-        <h1 id="setup-heading">Try the research workflow</h1>
+        <h1 id="setup-heading">Start your research</h1>
         <form id="research-form">
           <label for="run-mode">Mode</label>
           <select id="run-mode">
@@ -46,7 +46,7 @@
                 name="title"
                 required
                 maxlength="180"
-                value="AI-assisted software testing"
+                placeholder="Your research topic"
               />
               <label for="research-description">Description</label>
               <textarea
@@ -56,21 +56,21 @@
                 maxlength="2000"
                 rows="6"
                 placeholder="What would you like to explore?"
-              >Explore the benefits and limitations of AI in software testing.</textarea>
+              ></textarea>
             </section>
-            <section hidden class="files-panel" aria-labelledby="files-heading">
+            <section class="files-panel" aria-labelledby="files-heading">
               <h2 id="files-heading">Files</h2>
               <div id="drop-zone" class="drop-zone">
                 <span class="file-icon" aria-hidden="true">↥</span>
-                <p>Drop PDF files here</p>
+                <p>Your PDF workspace</p>
                 <button
                   class="secondary-button"
-                  id="choose-files"
+                  id="choose-files" aria-disabled="true" title="PDF upload is available in the local app"
                   type="button"
                 >
                   Choose files
                 </button>
-                <span class="file-hint">Up to 10 PDFs · 20 MB each</span>
+                <span class="file-hint">PDF upload is available in the local app</span>
               </div>
               <input
                 id="file-input"

@@ -1,19 +1,19 @@
 /* Setup screen followed by an activity screen, matching the wireframes. */
 :root {
   font:
-    16px/1.6 Tahoma,
-    sans-serif;
+    16px/1.6 "Courier New",
+    Courier, monospace;
   color: var(--ink);
   background: var(--bg);
   color-scheme: light;
-  --bg: #faf6ed;
-  --panel: #fffcf7;
-  --soft: #f2ecdf;
-  --ink: #3c342d;
-  --muted: #796b5e;
-  --line: #ddd2c3;
-  --accent: #79533e;
-  --accent-ink: #ffffff;
+  --bg: #f6f5ee;
+  --panel: #fcfbf5;
+  --soft: #e8e7de;
+  --ink: #23241f;
+  --muted: #686a60;
+  --line: #b7b8ac;
+  --accent: #f5d84c;
+  --accent-ink: #23241f;
 }
 
 * {
@@ -67,7 +67,8 @@ textarea:focus {
   border-bottom: 1px solid var(--line);
 }
 .brand {
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   padding: 0;
   white-space: nowrap;
 }
@@ -77,6 +78,8 @@ textarea:focus {
   border: 1px solid var(--line);
   padding: 1px 6px;
   border-radius: 4px;
+  background: var(--accent);
+  color: var(--ink);
 }
 .header-actions {
   margin-left: auto;
@@ -90,13 +93,13 @@ textarea:focus {
 .setup-screen {
   max-width: 1020px;
   margin: auto;
-  padding: 70px 30px 50px;
+  padding: 50px 30px;
 }
 .setup-screen > h1 {
-  font-size: 34px;
-  font-weight: 500;
+  font-size: 42px;
+  font-weight: 600;
   text-align: center;
-  margin: 5px 0 65px;
+  margin: 5px 0 40px;
 }
 .setup-grid {
   display: grid;
@@ -107,6 +110,7 @@ label {
   display: block;
   font-size: 15px;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 input,
 textarea {
@@ -114,7 +118,7 @@ textarea {
   background: var(--panel);
   border: 1px solid var(--line);
   padding: 13px 15px;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 16px;
 }
 textarea {
@@ -126,7 +130,7 @@ textarea {
 }
 .files-panel h2 {
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0 0 10px;
 }
 .drop-zone {
@@ -136,7 +140,7 @@ textarea {
   align-items: center;
   justify-content: center;
   border: 1px dashed var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   background: var(--soft);
   padding: 24px;
 }
@@ -147,7 +151,7 @@ textarea {
 .file-icon {
   font-size: 28px;
   line-height: 1;
-  color: var(--accent);
+  color: var(--ink);
 }
 .drop-zone p {
   font-size: 15px;
@@ -155,7 +159,7 @@ textarea {
 }
 .file-hint {
   margin-top: 18px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .file-list {
@@ -183,10 +187,10 @@ textarea {
 }
 .setup-actions {
   text-align: center;
-  margin-top: 45px;
+  margin-top: 30px;
 }
 .setup-note {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin: 0 0 18px;
 }
@@ -194,14 +198,16 @@ textarea {
 .secondary-button {
   font-size: 14px;
   padding: 10px 19px;
-  border-radius: 7px;
+  border-radius: 4px;
+  font-weight: 700;
 }
 .primary-button {
   background: var(--accent);
-  color: var(--panel);
+  color: var(--accent-ink);
+  border: 1px solid var(--ink);
 }
 .primary-button:hover {
-  background: var(--ink);
+  background: #e6c83b;
 }
 .secondary-button {
   border: 1px solid var(--line);
@@ -494,7 +500,7 @@ dialog::backdrop {
   }
 }
 
-/* The selected Warm typography and surfaces. */
+/* Paper, ink and yellow accents inspired by the retained-chart reference. */
 body {
   background: var(--bg);
 }
@@ -510,9 +516,6 @@ body {
 .send-button {
   color: var(--accent-ink);
 }
-.primary-button:hover {
-  background: var(--accent);
-}
 input::placeholder,
 textarea::placeholder {
   color: var(--muted);
@@ -525,7 +528,7 @@ textarea::placeholder {
   color: var(--ink);
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 8px 12px;
   margin: 0 0 20px 8px;
 }

@@ -583,6 +583,10 @@ function renderFiles() {
 
 function addFiles(incoming) {
   if (busy) return;
+  if (window.thesisDemoRequest) {
+    notify("PDF upload is available in the local app.");
+    return;
+  }
   const additions = [...incoming].filter(
     (file) =>
       !selectedFiles.some(
@@ -609,6 +613,10 @@ function addFiles(incoming) {
 }
 
 $("#choose-files").addEventListener("click", () => {
+  if (window.thesisDemoRequest) {
+    notify("PDF upload is available in the local app.");
+    return;
+  }
   if (!busy) $("#file-input").click();
 });
 $("#file-input").addEventListener("change", (event) => {
