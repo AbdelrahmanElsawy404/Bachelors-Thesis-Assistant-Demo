@@ -643,7 +643,9 @@ async function initialize() {
     const id = params.get("session");
     const mode = params.get("mode") === "research" ? "research" : "demo";
     if (id) {
-      const response = await request(sessionBase(mode) + "/" + id);
+      const response = await (window.thesisDemoRequest || fetch)(
+        sessionBase(mode) + "/" + id,
+      );
       if (response.ok) renderSession(await response.json());
       else showSetup();
     }
